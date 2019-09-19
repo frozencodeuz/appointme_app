@@ -2,6 +2,7 @@ import 'package:appointme/core/constants/constants.dart';
 import 'package:appointme/core/constants/route_path.dart';
 import 'package:appointme/core/providers/slot_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class VerifyPage extends StatefulWidget {
@@ -37,20 +38,13 @@ class _VerifyPageState extends State<VerifyPage> {
           RoutePath.main_page,
         );
       } else {
-        return showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: Text("Some things went wrong"),
-                content: Text(response['msg']),
-                actions: <Widget>[
-                  FlatButton(
-                    child: Text("Ok"),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                ],
-              );
-            });
+        Fluttertoast.showToast(
+          msg: "Somethings went wrong.Please Try Again.",
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          toastLength: Toast.LENGTH_LONG,
+          timeInSecForIos: 10,
+        );
       }
     }
   }

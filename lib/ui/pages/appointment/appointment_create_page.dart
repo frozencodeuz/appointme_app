@@ -2,6 +2,7 @@ import 'package:appointme/core/constants/constants.dart';
 import 'package:appointme/core/constants/route_path.dart';
 import 'package:appointme/core/providers/slot_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -73,6 +74,14 @@ class _AppointmentCreatePageState extends State<AppointmentCreatePage> {
           context,
           RoutePath.verify,
           arguments: response['appointment_id'],
+        );
+      } else {
+        Fluttertoast.showToast(
+          msg: "Failed to book appoinment,Please Try Again.",
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          toastLength: Toast.LENGTH_LONG,
+          timeInSecForIos: 10,
         );
       }
     }

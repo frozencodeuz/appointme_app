@@ -1,6 +1,7 @@
 import 'package:appointme/core/constants/constants.dart';
 import 'package:appointme/core/constants/route_path.dart';
 import 'package:appointme/core/models/doctor.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class DoctorListItem extends StatelessWidget {
@@ -32,11 +33,18 @@ class DoctorListItem extends StatelessWidget {
             Container(
               height: 70,
               width: 70,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(doctor.avatar),
-                ),
+              child: CachedNetworkImage(
+                placeholder: (ctx, url) {
+                  return Image.asset(
+                    'images/doctor.png',
+                    height: 70,
+                    width: 70,
+                  );
+                },
+                imageUrl: doctor.avatar,
+                height: 60,
+                width: 60,
+                fit: BoxFit.cover,
               ),
             ),
             SizedBox(width: 10),

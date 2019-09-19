@@ -2,6 +2,7 @@ import 'package:appointme/core/constants/app_colors.dart';
 import 'package:appointme/core/providers/slot_provider.dart';
 import 'package:appointme/ui/pages/appointment/appointment_result.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class AppointmentPage extends StatefulWidget {
@@ -32,20 +33,13 @@ class _AppointmentPageState extends State<AppointmentPage> {
           );
         }));
       } else {
-        return showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: Text("Some thing went wrong"),
-                content: Text("The appointment key is not valid.Try again."),
-                actions: <Widget>[
-                  FlatButton(
-                    child: Text("Ok"),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                ],
-              );
-            });
+        Fluttertoast.showToast(
+          msg: "The appointment key is not valid.Try again.",
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          toastLength: Toast.LENGTH_LONG,
+          timeInSecForIos: 10,
+        );
       }
     }
   }
